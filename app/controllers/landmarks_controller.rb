@@ -15,18 +15,19 @@ class LandmarksController < ApplicationController
 
  #show action
  get "/landmarks/:id" do
-   @landmark = Landmark.find(id: params[:id])
-   erb :show
+   @landmark = Landmark.find(params[:id])
+   erb :"/landmarks/show"
  end
 
  #update action
  get "/landmarks/:id/edit" do
-    @landmark = Landmark.find(id: params[:id])
-    erb :edit
+    @landmark = Landmark.find(params[:id])
+    erb :"/landmarks/edit"
  end
 
  patch "/landmarks/:id" do
-    @landmark = Landmark.find(id: params[:id])
+    @landmark = Landmark.find(params[:id])
+    @landmark.figure_id = params[:landmark][:figure_id]
     @landmark.name = params[:landmark][:name]
     @landmark.year_completed = params[:landmark][:year_completed]
     @landmark.save
